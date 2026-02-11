@@ -8,7 +8,12 @@ public class Car extends Vehicle {
     private int numberOfDoors;
 
     public Car(String licensePlate, String color, int numberOfDoors) {
-        super(licensePlate, color, VehicleType.CAR);
+        this(licensePlate, color, numberOfDoors, VehicleType.CAR);
+    }
+
+    // Protected constructor for subclasses to specify a different VehicleType
+    protected Car(String licensePlate, String color, int numberOfDoors, VehicleType type) {
+        super(licensePlate, color, type);
         this.numberOfDoors = numberOfDoors;
     }
 

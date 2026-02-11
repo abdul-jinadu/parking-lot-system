@@ -1,8 +1,6 @@
 package com.parkinglot.models.spots;
 
-/**
- * Enumerates supported parking spot types in the parking lot.
- */
+// Supported parking spot types
 public enum SpotType {
     COMPACT,
     REGULAR,
@@ -10,4 +8,3 @@ public enum SpotType {
     ELECTRIC,
     DISABLED
 }
-

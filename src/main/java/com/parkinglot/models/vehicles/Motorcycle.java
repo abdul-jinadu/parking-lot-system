@@ -4,8 +4,20 @@ import com.parkinglot.models.spots.ParkingSpot;
 
 public class Motorcycle extends Vehicle {
 
+    private final int engineCapacityCc;
+
     public Motorcycle(String licensePlate, String color) {
+        this(licensePlate, color, 0);
+    }
+
+    // Overloaded constructor with engine capacity
+    public Motorcycle(String licensePlate, String color, int engineCapacityCc) {
         super(licensePlate, color, VehicleType.MOTORCYCLE);
+        this.engineCapacityCc = engineCapacityCc;
+    }
+
+    public int getEngineCapacityCc() {
+        return engineCapacityCc;
     }
 
     @Override

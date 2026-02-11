@@ -4,11 +4,8 @@ import java.util.Objects;
 
 import com.parkinglot.models.vehicles.Vehicle;
 
-/**
- * Base abstraction for parking spots.
- *
- * <p>Concrete implementations define compatibility rules with vehicle types.</p>
- */
+// Abstract base class for parking spots
+// Concrete subclasses define vehicle compatibility rules
 public abstract class ParkingSpot {
 
     private final String id;
@@ -49,26 +46,14 @@ public abstract class ParkingSpot {
         return currentVehicle;
     }
 
-    /**
-     * @return {@code true} if the spot is available for parking.
-     */
     public boolean isAvailable() {
         return !occupied && !reserved;
     }
 
-    /**
-     * Indicates whether the provided vehicle can be accommodated in this spot.
-     *
-     * @param vehicle target vehicle
-     * @return {@code true} if compatible, {@code false} otherwise
-     */
+    // Whether the given vehicle can fit in this spot
     public abstract boolean canFitVehicle(Vehicle vehicle);
 
-    /**
-     * Assigns the given vehicle to this spot.
-     *
-     * @param vehicle vehicle to assign
-     */
+    // Assigns a vehicle to this spot
     public void assignVehicle(Vehicle vehicle) {
         if (!isAvailable()) {
             throw new IllegalStateException("Spot is not available");
@@ -80,13 +65,10 @@ public abstract class ParkingSpot {
         this.occupied = true;
     }
 
-    /**
-     * Removes the currently assigned vehicle from this spot.
-     */
+    // Removes the currently assigned vehicle
     public void removeVehicle() {
         this.currentVehicle = null;
         this.occupied = false;
         this.reserved = false;
     }
 }
-

@@ -5,8 +5,20 @@ import com.parkinglot.models.spots.SpotType;
 
 public class Bus extends Vehicle {
 
+    private final int passengerCapacity;
+
     public Bus(String licensePlate, String color) {
+        this(licensePlate, color, 0);
+    }
+
+    // Overloaded constructor with passenger capacity
+    public Bus(String licensePlate, String color, int passengerCapacity) {
         super(licensePlate, color, VehicleType.BUS);
+        this.passengerCapacity = passengerCapacity;
+    }
+
+    public int getPassengerCapacity() {
+        return passengerCapacity;
     }
 
     @Override

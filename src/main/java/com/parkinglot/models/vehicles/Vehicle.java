@@ -1,34 +1,21 @@
 package com.parkinglot.models.vehicles;
 
+import java.time.LocalDateTime;
+import java.util.Objects;
+
 import com.parkinglot.interfaces.Parkable;
 import com.parkinglot.models.ParkingTicket;
 import com.parkinglot.models.spots.ParkingSpot;
 
-import java.time.LocalDateTime;
-import java.util.Objects;
-
-/**
- * Base abstraction for all vehicles managed by the parking lot.
- *
- * <p>This class encapsulates common state such as license plate and color,
- * and provides default implementations for {@link Parkable} operations that
- * can be specialized by concrete vehicle types.</p>
- */
+// Abstract base class for all vehicles
+// Implements Parkable with default park/exit/calculateFee logic
 public abstract class Vehicle implements Parkable {
 
     private final String licensePlate;
     private String color;
     private final VehicleType type;
-
     private ParkingTicket activeTicket;
 
-    /**
-     * Constructs a new vehicle.
-     *
-     * @param licensePlate unique license plate identifier (non-null, non-empty)
-     * @param color        vehicle color
-     * @param type         vehicle type
-     */
     protected Vehicle(String licensePlate, String color, VehicleType type) {
         if (licensePlate == null || licensePlate.isBlank()) {
             throw new IllegalArgumentException("License plate must not be blank");
@@ -38,9 +25,6 @@ public abstract class Vehicle implements Parkable {
         this.type = Objects.requireNonNull(type, "type must not be null");
     }
 
-    /**
-     * @return license plate value in normalized form.
-     */
     public String getLicensePlate() {
         return licensePlate;
     }
@@ -68,22 +52,13 @@ public abstract class Vehicle implements Parkable {
         this.activeTicket = activeTicket;
     }
 
-    /**
-     * @return vehicle-specific size multiplier used in pricing.
-     */
+    // Vehicle-specific size multiplier used in pricing
     public abstract double getSizeMultiplier();
 
-    /**
-     * Indicates whether this vehicle can be accommodated by the given spot.
-     *
-     * @param spot the target parking spot
-     * @return {@code true} if it can fit, {@code false} otherwise
-     */
+    // Whether this vehicle can fit in the given spot
     public abstract boolean canFitInSpot(ParkingSpot spot);
 
-    /**
-     * @return base hourly rate (in local currency) for this vehicle type.
-     */
+    // Base hourly rate for this vehicle type
     protected abstract double getBaseHourlyRate();
 
     @Override
@@ -120,5 +95,3 @@ public abstract class Vehicle implements Parkable {
         return getBaseHourlyRate() * getSizeMultiplier() * hours;
     }
 }
-
-

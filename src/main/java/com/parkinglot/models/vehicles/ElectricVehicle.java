@@ -11,7 +11,7 @@ public class ElectricVehicle extends Car implements Chargeable {
     private boolean charging;
 
     public ElectricVehicle(String licensePlate, String color, int numberOfDoors, double batteryCapacityKwh) {
-        super(licensePlate, color, numberOfDoors);
+        super(licensePlate, color, numberOfDoors, VehicleType.ELECTRIC_CAR);
         this.batteryCapacityKwh = batteryCapacityKwh;
         this.stateOfChargePercent = 100.0;
     }

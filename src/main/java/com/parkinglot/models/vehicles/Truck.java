@@ -5,8 +5,20 @@ import com.parkinglot.models.spots.SpotType;
 
 public class Truck extends Vehicle {
 
+    private final double cargoCapacityTons;
+
     public Truck(String licensePlate, String color) {
+        this(licensePlate, color, 0.0);
+    }
+
+    // Overloaded constructor with cargo capacity
+    public Truck(String licensePlate, String color, double cargoCapacityTons) {
         super(licensePlate, color, VehicleType.TRUCK);
+        this.cargoCapacityTons = cargoCapacityTons;
+    }
+
+    public double getCargoCapacityTons() {
+        return cargoCapacityTons;
     }
 
     @Override
