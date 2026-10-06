@@ -27,7 +27,8 @@ public final class ParkingLotDisplay {
                 5. Make Reservation
                 6. Cancel Reservation
                 7. Generate Reports
-                8. Exit System
+                8. Find My Car
+                9. Exit System
                 
                 Enter choice:\s""";
     }

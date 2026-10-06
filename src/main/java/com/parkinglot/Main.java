@@ -21,6 +21,7 @@ import com.parkinglot.payment.CashPayment;
 import com.parkinglot.payment.DigitalWalletPayment;
 import com.parkinglot.payment.Payment;
 import com.parkinglot.services.FeeCalculationService;
+import com.parkinglot.services.FindCar;
 import com.parkinglot.services.ParkingService;
 import com.parkinglot.services.ReportService;
 import com.parkinglot.services.ReservationService;
@@ -55,7 +56,8 @@ public class Main {
                 case 5 -> makeReservation();
                 case 6 -> cancelReservation();
                 case 7 -> generateReport();
-                case 8 -> {
+                case 8 -> findMyCar();
+                case 9 -> {
                     System.out.println("\nExiting system. Goodbye!");
                     running = false;
                 }
@@ -217,7 +219,19 @@ public class Main {
     private static void generateReport() {
         System.out.println(reportService.generateStatusReport());
     }
+     // Created with assistance from Chatgpt
+    private static void findMyCar() {
 
+    System.out.print("\nEnter your car color: ");
+    String color = scanner.nextLine().trim();
+
+    System.out.print("Enter your vehicle type (CAR, MOTORCYCLE, TRUCK, BUS, ELECTRIC_VEHICLE): ");
+    String vehicleType = scanner.nextLine().trim();
+
+    FindCar finder = new FindCar(parkingService);
+    finder.findCar(color, vehicleType);
+   }
+   
     // Factory method - creates vehicle based on type selection
     private static Vehicle createVehicle(int typeChoice, String plate, String color) {
         return switch (typeChoice) {
@@ -247,4 +261,5 @@ public class Main {
             default -> null;
         };
     }
+
 }
